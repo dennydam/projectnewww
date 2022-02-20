@@ -24,6 +24,15 @@ const routes = [
       import(/* webpackChunkName: "login" */ '../views/LoginD.vue')
   },
   {
+    path: '/product/:id',
+    name: 'Product',
+    component: () =>
+      import(/* webpackChunkName: "product" */ '../views/ProducT.vue'),
+    meta: {
+      title: '商品 | 購物網'
+    }
+  },
+  {
     path: '/count',
     name: 'Count',
     component: () => import(/* webpackChunkName: "count" */ '../views/CountD.vue')

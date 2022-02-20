@@ -7,11 +7,11 @@
       :title="form._id.length > 0 ? '編輯商品' : '新增商品'"
       v-model="dialog1"
       persistent
-      @hidden="resetForm"
+      @click="resetForm"
       max-width="500"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on" width="200px">
+        <v-btn  color="primary" dark v-bind="attrs" v-on="on" width="200px">
           Open Dialog
         </v-btn>
       </template>
@@ -165,7 +165,7 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.category"
+                        v-model="editedItem.price"
                         label="Fat (g)"
                       ></v-text-field>
                     </v-col>
@@ -259,7 +259,7 @@ export default {
   data () {
     return {
       modalSubmitting: false,
-      categories: [{ text: '請選擇分類', value: '' }, '飾品', '皮件', '鞋子'],
+      categories: [{ text: '請選擇分類', value: '' }, '訓練菜單', '飲食菜單'],
       products: [],
       form: {
         name: '',
@@ -298,7 +298,6 @@ export default {
         { text: 'Protein (g)', value: 'protein' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
-      desserts: [],
       editedIndex: -1,
       editedItem: {
         name: '',
@@ -362,16 +361,17 @@ export default {
       console.log('7776')
 
       try {
-        if (this.for._id.length === 0) {
+        if (this.form._id.length === 0) {
           const { data } = await this.api.post('/products', fd, {
             headers: {
               authorization: 'Bearer ' + this.user.token
             }
           })
           this.products.push(data.result)
+          this.dialog1 = false
         } else {
           const { data } = await this.api.patch(
-            '/products' + this.form._id,
+            '/products/' + this.form._id,
             fd,
             {
               headers: {
@@ -384,6 +384,7 @@ export default {
             image: data.result.image
           }
           this.$refs.table.refresh()
+          console.log('7776')
         }
         this.$bvModal.hide('modal-product')
       } catch (error) {
@@ -396,6 +397,7 @@ export default {
       this.modalSubmitting = false
     },
     resetForm (event) {
+      console.log('8888')
       if (this.modalSubmitting) {
         event.preventDefault()
         return
@@ -405,7 +407,10 @@ export default {
         price: 0,
         description: '',
         image: null,
-        sell: false
+        sell: false,
+        category: '',
+        _id: '',
+        index: ''
       }
     },
     // initialize () {
@@ -482,7 +487,7 @@ export default {
     //     }
     //   ]
     // },
-    editItem (item) {
+    async editItem (item) {
       this.editedIndex = this.products.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
@@ -492,9 +497,15 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
-    deleteItemConfirm () {
+    async deleteItemConfirm () {
       this.products.splice(this.editedIndex, 1)
       this.closeDelete()
+      try {
+        await this.api.delete('/products/' + this.products[this.DelIndex]._id)
+      } catch (error) {
+        console.log(error)
+        alert('刪除失敗')
+      }
     },
     close () {
       this.dialog = false
@@ -503,12 +514,34 @@ export default {
         this.editedIndex = -1
       })
     },
-    save () {
+    async save () {
       if (this.editedIndex > -1) {
         Object.assign(this.products[this.editedIndex], this.editedItem)
       } else {
-        this.desserts.push(this.editedItem)
+        this.products.push(this.editedItem)
       }
+      const fd = new FormData()
+      console.log(this.products[this.editedIndex])
+      for (const key in this.products[this.editedIndex]) {
+        if (key !== '_id') {
+          fd.append(key, this.products[this.editedIndex][key])
+        }
+      }
+      const { data } = await this.api.patch(
+        '/products/' + this.products[this.editedIndex]._id,
+        fd,
+        {
+          headers: {
+            authorization: 'Bearer ' + this.user.token
+          }
+        }
+      )
+      this.products[this.form.index] = {
+        ...this.form,
+        image: data.result.image
+      }
+      console.log('55')
+      this.$refs.table.refresh()
       this.close()
     }
   },

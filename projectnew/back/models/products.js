@@ -23,9 +23,12 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: {
-      values: ['飾品', '皮件', '鞋子'],
+      values: ['訓練菜單', '飲食菜單'],
       message: '商品分類不存在'
     }
+  },
+  video: {
+    type: String
   }
 }, { versionKey: false })
 

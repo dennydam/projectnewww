@@ -13,48 +13,49 @@
           <h1>訓練菜單</h1>
 
           <!-- cardtest -->
-          <v-container>
-          <v-row>
-            <v-col
-              cols="12"
-              md="6"
-              lg="3"
-              v-for="product in products"
-              :key="product._id"
-            >
-              <ProductCard :product="product"></ProductCard>
-            </v-col>
-          </v-row>
-         </v-container>
+          <!-- <v-container>
+            <v-row>
+              <v-col
+                cols="12"
+                md="6"
+                lg="3"
+                v-for="product in products"
+                :key="product._id"
+              >
+                <ProductCard :product="product"></ProductCard>
+              </v-col>
+            </v-row>
+          </v-container> -->
           <!-- cardtest -->
           <v-divider class="mx-4 my-4"></v-divider>
           <v-row>
             <v-col
               class="mt-5"
-              v-for="product in prodcts"
-              :key="product.text"
+              v-for="product in products"
+              :key="product._id"
               cols="12"
               md="6"
               lg="3"
               xl="3"
             >
-              <v-card max-width="250">
-                <v-img
-                  :src="product.image"
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  height="250px"
-                >
-                  <v-card-title >{{ product.name }}</v-card-title>
-                </v-img>
-                <v-card-text v-text="product.name"> </v-card-text>
-                <v-divider class="mx-4"></v-divider>
+                <v-card max-width="270">
+                  <v-img
+                    :src="product.image"
+                    class="white--text align-end"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                    height="250px"
+                  >
+                    <v-card-title>
+                      <router-link :to='"/product/" + product._id'>{{ product.name }}</router-link></v-card-title>
+                  </v-img>
+                   <v-card-text v-text="product.description"></v-card-text>
+                    <v-divider class="mx-4"></v-divider>
 
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="deep-purple lighten-2" text> START </v-btn>
-                </v-card-actions>
-              </v-card>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="deep-purple lighten-2" text> START </v-btn>
+                    </v-card-actions>
+                </v-card>
             </v-col>
           </v-row>
         </v-container>
@@ -160,19 +161,19 @@
                   md="6"
                   lg="3"
                   xl="3"
-                  v-for="food in foods[index]"
-                  :key="food.text"
+                  v-for="product in products[index]"
+                  :key="product._id"
                 >
                   <v-card max-width="250">
                     <v-img
-                      :src="food.src"
+                      :src="product.image"
                       class="white--text align-end"
                       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                       height="250px"
                     >
-                      <v-card-title v-text="food.title"></v-card-title>
+                      <v-card-title v-text="product.name"></v-card-title>
                     </v-img>
-                    <v-card-text v-text="food.text"> </v-card-text>
+                    <v-card-text v-text="product.description"> </v-card-text>
                     <v-divider class="mx-4"></v-divider>
 
                     <v-card-actions>
@@ -229,11 +230,11 @@
   </div>
 </template>
 <script>
-import ProductCard from '../components/ProductCard.vue'
+// import ProductCard from '../components/ProductCard.vue'
 export default {
-  components: {
-    ProductCard
-  },
+  // components: {
+  //   ProductCard
+  // },
   data () {
     return {
       products: [],
@@ -257,30 +258,30 @@ export default {
           src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
         }
       ],
-      cards: [
-        {
-          title: '胸部訓練',
-          text: 'dddd',
-          src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-          flex: 3
-        },
-        {
-          title: '腿部訓練',
-          src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-          flex: 3
-        },
-        {
-          title: '肩部訓練',
-          src: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d29ya291dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-          flex: 3
-        },
-        {
-          title: '背部訓練',
-          src: 'https://images.unsplash.com/photo-1611841315886-a8ad8d02f179?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTM1fHx3b3Jrb3V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-          flex: 3
-        },
-        { text: 'eeeeeee' }
-      ],
+      // cards: [
+      //   {
+      //     title: '胸部訓練',
+      //     text: 'dddd',
+      //     src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
+      //     flex: 3
+      //   },
+      //   {
+      //     title: '腿部訓練',
+      //     src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
+      //     flex: 3
+      //   },
+      //   {
+      //     title: '肩部訓練',
+      //     src: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d29ya291dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+      //     flex: 3
+      //   },
+      //   {
+      //     title: '背部訓練',
+      //     src: 'https://images.unsplash.com/photo-1611841315886-a8ad8d02f179?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTM1fHx3b3Jrb3V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      //     flex: 3
+      //   },
+      //   { text: 'eeeeeee' }
+      // ],
       foods: [
         [
           {

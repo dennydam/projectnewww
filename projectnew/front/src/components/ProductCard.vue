@@ -9,13 +9,6 @@
       >
         <v-card-title> {{ product.name }}</v-card-title>
      </v-img>
-      <!-- <v-card-text v-text="card.text"></v-card-text>
-      <v-divider class="mx-4"></v-divider> -->
-
-      <!-- <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="deep-purple lighten-2" text> START </v-btn>
-      </v-card-actions> -->
     </v-card>
   </v-card>
 </template>

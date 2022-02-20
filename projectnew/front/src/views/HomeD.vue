@@ -38,11 +38,11 @@
           </v-col>
           </v-hover>
 
-          <v-col cols="6" sm="4" class="text-center">
+          <v-col cols="6" sm="4" class="img1">
             <v-img
               class="animate__animated animate__bounce animate__delay-1s"
               src="https://go180.nl/app/uploads/2021/05/GO180-Groningen_36.jpg"
-              width="200px"
+              width="300px"
             >
               <div class="fill-height bottom-gradient"></div>
             </v-img>
@@ -51,15 +51,47 @@
           <v-col cols="12" sm="4">
             <div class="text">
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod
-              magni nemo quas velit blanditiis laudantium ipsam facere neque
-              laborum voluptas reiciendis, veniam adipisci. Ab obcaecati
-              recusandae deserunt velit officia et?
+             Our goal is to make health and fitness attainable, affordable and approachable.
             </p>
             </div>
           </v-col>
         </v-row>
       </div>
+    </div>
+    <div id="section04">
+      <v-container>
+        <v-row align-content="center"
+              justify="center"
+              class="mb-10"
+             >
+             <p class="abouttext">About us</p>
+        </v-row>
+        <v-row>
+          <v-col>
+      <v-parallax
+    dark
+    src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
+  >
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        <h1 class="text-h4 font-weight-thin mb-4">
+         ABOUT FITNESS BLENDER
+        </h1>
+        <h4 class="subheading">
+          Build your application today!
+        </h4>
+      </v-col>
+    </v-row>
+  </v-parallax>
+  </v-col>
+  </v-row>
+  </v-container>
     </div>
     <section id="section03">
       <div class="container">
@@ -173,7 +205,7 @@
 #section02 {
   color: white;
   width: 100%;
-  height: 650px;
+  height: 500px;
   font-family: 'Lobster', cursive;
   font-size: 2rem;
 }
@@ -189,7 +221,7 @@
 
 .img1{
   text-align: center;
-  padding-left: 50px;
+  padding-left:100px;
 }
 
 .v-main {
@@ -229,6 +261,14 @@
   min-width: 450px;
   margin: 0 auto;
 }
+
+.abouttext{
+  font-size: 5rem;
+  color: white;
+}
+// #section04
+//   margin-top: -200px
+//
 
 </style>
 
