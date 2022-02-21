@@ -75,3 +75,20 @@ export const updateProductById = async (req, res) => {
     }
   }
 }
+
+export const delProducts = async (req, res) => {
+  try {
+    const result = await products.findByIdAndDelete(req.params.id)
+    if (result) {
+      res.status(200).send({ success: true, message: '' })
+    } else {
+      res.status(404).send({ success: false, message: '查無帳號' })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(404).send({ success: false, message: '查無帳號' })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+}
