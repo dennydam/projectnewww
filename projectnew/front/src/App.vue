@@ -93,7 +93,7 @@
         <v-dialog v-model="dialog2" persistent max-width="350">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              Login in
+              Log in
             </v-btn>
           </template>
           <v-card color="primary">
@@ -166,14 +166,16 @@ export default {
       //   index: "3",
       //   title: "count",
       // },
-      { index: '1', icon: 'home', title: 'Link A', url: '/about' },
+      { index: '1', icon: 'home', title: 'HOME', url: '/' },
       {
         index: '2',
         icon: 'info',
-        title: 'Link B',
-        submenu: [{ itemIndex: '2-1', itemTitle: 'Tranning' }]
+        title: 'Tranning',
+        submenu: [{ itemIndex: '2-1', itemTitle: 'Tranning', url: '/about' },
+          { itemIndex: '2-1', itemTitle: 'Tranning', url: '/about' }
+        ]
       },
-      { index: '3', icon: 'warning', title: 'Link C', url: '/admin' }
+      { index: '3', icon: 'warning', title: '管理者', url: '/admin' }
     ],
     dialog: false,
     dialog2: false,

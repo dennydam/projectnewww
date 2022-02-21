@@ -9,6 +9,19 @@
       <div class="worktext">
         <h1>Sow nothing reap nothing</h1>
       </div>
+      <v-form
+          ref="form"
+        >
+          <v-text-field
+            v-model.number='quantity'
+            type="number"
+            required
+            :state='quantityState'
+             min='0'
+          >
+          </v-text-field>
+          <v-btn @click="addCart">加入購物車</v-btn>
+        </v-form>
     </div>
   </v-container>
 </template>
@@ -21,7 +34,18 @@ export default {
       description: '',
       image: '',
       sell: false,
-      category: ''
+      category: '',
+      quantity: 0
+    }
+  },
+  methods: {
+    addCart () {
+      this.$store.dispatch('user/addCart', { product: this.$route.params.id, quantity: this.quantity })
+    }
+  },
+  computed: {
+    quantityState () {
+      return this.quantity === 0 ? null : this.quantity > 0
     }
   },
   async created () {

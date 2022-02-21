@@ -12,3 +12,7 @@ export const getInfo = (state, data) => {
   state.role = data.role
   state.cart = data.cart
 }
+
+export const updateCart = (state, data) => {
+  state.cart = data
+}

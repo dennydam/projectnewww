@@ -499,9 +499,12 @@ export default {
     },
     async deleteItemConfirm () {
       this.products.splice(this.editedIndex, 1)
-      this.closeDelete()
+      // this.closeDelete()
+      if (this.editedIndex > -1) {
+        Object.assign(this.products[this.editedIndex], this.editedItem)
+      }
       try {
-        await this.api.delete('/products/' + this.products[this.DelIndex]._id)
+        await this.api.delete('/products/' + this.products[this.editedIndex]._id)
       } catch (error) {
         console.log(error)
         alert('刪除失敗')
